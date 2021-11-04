@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background: green;
+            width: 300px;
+            height: 300px;
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+        }
+
+        .square {
+            width: 300px;
+            height: 300px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <comment v-for="comment in comments" :key="comment.id" :comment=comment>
+
+        </comment>
+        <div class="center">
+            <div class="circle" :style="{backgroundColor: color}"></div>
+        </div>
+        <div class="center">
+            <input type="text" v-model="color">
+        </div>
+        <div class="center">
+            <h1>{{color}}</h1>
+        </div>
+        <br>
+        <h1>{{fullName}}</h1>
+        <h1>{{reverseFullName}}</h1>
+        <br>
+        <div class="container">
+            <h1 v-for="n in 5" :key="n"><p><strong>{{n}}</strong> {{getRandom()}} </p></h1>
+            <hr>
+            <h1 v-for="n in 5" :key="n"><p><strong>{{n}}</strong> {{getRandomComputed}} </p></h1>
+        </div>
+        <div class="container">
+            <h1>List of User Profile</h1>            
+            <div class="container" v-for="user in users" :key="user.id">
+                <p><strong>User: </strong>{{user.username}}</p>
+                <p><strong>Profession: </strong>{{user.profession}}</p>
+                <hr>
+            </div>
+
+        </div>
+        <h1>List of User</h1>
+        <ul>
+            <li v-for=" number in 10">{{number}}</li>
+        </ul>
+        <br>
+        <div class="center">
+            <div :class="{circle: shapeFlag, square: !shapeFlag}" :style="styleObject">
+            </div>                    
+        </div>
+        <div class="center">
+            <button @click="changeShape"> ChangeShape</button>
+        </div>
+        
+        <br>
+        <h1>{{message}}</h1>
+        <h1>{{num}}</h1>
+        <h5>{{"test hello"}}</h5>
+        <h5>{{message.split(" ").reverse().join(" ")}}</h5>
+        <img :src="img" alt="">
+        <br>
+        <a :href="link">official link</a>
+        <br>
+        <button @click="increasement">Add Num</button>
+        <br>
+        <div class="box" @mouseover="overbox"></div>
+        <br>
+        <h1>Product: {{product}}</h1>
+        <h1 v-if="quantity >= 20">Available</h1>
+        <h1 v-else-if="quantity >0 && quantity < 5 ">Limited Available</h1>
+        <h1 v-else>Sold Out</h1>
+        <h1 v-show="sale">On Sale!!!</h1>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
